@@ -60,3 +60,11 @@ resource "aws_autoscaling_group" "main" {
     propagate_at_launch = true
   }
 }
+
+resource "aws_route53_record" "main" {
+  zone_id = var.zone_id
+  name    = "rabbitmq-${var.env}"
+  type    = "A"
+  ttl     = 300
+  records = [var.alb_name]
+}
