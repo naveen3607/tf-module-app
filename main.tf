@@ -63,7 +63,7 @@ resource "aws_autoscaling_group" "main" {
 
 resource "aws_route53_record" "main" {
   zone_id = var.zone_id
-  name    = "rabbitmq-${var.env}"
+  name    = "${component}-${var.env}"
   type    = "A"
   ttl     = 300
   records = [var.alb_name]
