@@ -66,5 +66,5 @@ resource "aws_route53_record" "main" {
   name    = "rabbitmq-${var.env}"
   type    = "A"
   ttl     = 300
-  records = [var.alb_name]
+  records = var.alb_name
 }
