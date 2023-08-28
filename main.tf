@@ -102,8 +102,8 @@ resource "aws_lb_target_group" "public" {
 }
 
 resource "aws_lb_target_group_attachment" "public" {
-  count = length(tolist(data.dns_a_record_set.private_alb.addrs))
-  target_group_arn = aws_lb_target_group.public.arn
+  count = var.component == "frontend" ? length(tolist(data.dns_a_record_set.private_alb.addrs)) : 0
+  target_group_arn = aws_lb_target_group.public[0].arn
   target_id        = element(data.dns_a_record_set.private_alb.addrs, count.index)
   port = 80
 }
