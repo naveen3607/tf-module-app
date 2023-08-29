@@ -28,6 +28,7 @@ resource "aws_security_group" "main" {
   }
 }
 
+/*
 resource "aws_iam_policy" "main" {
   name        = "${local.name_prefix}-policy"
   path        = "/"
@@ -84,6 +85,7 @@ resource "aws_iam_instance_profile" "main" {
   name = "${local.name_prefix}-role"
   role = aws_iam_role.main.name
 }
+*/
 
 resource "aws_launch_template" "main" {
   name_prefix   = local.name_prefix
