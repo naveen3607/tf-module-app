@@ -80,6 +80,11 @@ resource "aws_iam_role_policy_attachment" "main" {
   policy_arn = aws_iam_policy.main.arn
 }
 
+resource "aws_iam_instance_profile" "main" {
+  name = "${local.name_prefix}-role"
+  role = aws_iam_role.main.arn
+}
+
 resource "aws_launch_template" "main" {
   name_prefix   = local.name_prefix
   image_id      = data.aws_ami.ami.id
