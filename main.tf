@@ -81,8 +81,8 @@ resource "aws_iam_role_policy_attachment" "main" {
 }
 
 resource "aws_iam_instance_profile" "main" {
-  name = "${local.name_prefix}-instance_profile"
-  role = aws_iam_role.main.arn
+  name = "${local.name_prefix}-role"
+  role = aws_iam_role.main.name
 }
 
 resource "aws_launch_template" "main" {
