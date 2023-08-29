@@ -75,7 +75,7 @@ resource "aws_iam_role" "main" {
   tags = merge(local.tags, { Name = "${local.name_prefix}-role" })
 }
 
-resource "aws_iam_role_policy_attachment" "attach" {
+resource "aws_iam_role_policy_attachment" "main" {
   role       = aws_iam_role.main.name
   policy_arn = aws_iam_policy.main.arn
 }
