@@ -37,7 +37,7 @@ resource "aws_security_group" "main" {
 }
 
 resource "aws_security_group_rule" "nginx_exporter" {
-  count = var.component == frontend ? 1 : 0
+  count = var.component == "frontend" ? 1 : 0
   from_port         = 9113
   protocol          = "tcp"
   security_group_id = aws_security_group.main.id
