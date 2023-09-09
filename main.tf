@@ -193,6 +193,7 @@ resource "aws_lb_target_group" "public" {
     port = var.port
     timeout = 2
     unhealthy_threshold = 2
+    matcher = "404"
   }
 }
 
