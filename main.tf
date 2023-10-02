@@ -108,6 +108,7 @@ resource "aws_launch_template" "main" {
   image_id      = data.aws_ami.ami.id
   instance_type = var.instance_type
   vpc_security_group_ids = [aws_security_group.main.id]
+
   iam_instance_profile {
     name = "${local.name_prefix}-instance-profile"
   }
@@ -120,6 +121,15 @@ resource "aws_launch_template" "main" {
   tag_specifications {
     resource_type = "instance"
     tags = merge(local.tags, { Name = "${local.name_prefix}-ec2"})
+  }
+
+  block_device_mappings {
+    device_name = "/dev/sda1"
+
+    ebs {
+      encrypted = true
+      kms_key_id = var.kms_key_id
+    }
   }
 }
 resource "aws_autoscaling_group" "main" {
