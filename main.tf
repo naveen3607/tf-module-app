@@ -123,14 +123,14 @@ resource "aws_launch_template" "main" {
     tags = merge(local.tags, { Name = "${local.name_prefix}-ec2"})
   }
 
-#  block_device_mappings {
-#    device_name = "/dev/sda1"
-#
-#    ebs {
-#      encrypted = true
-#      kms_key_id = var.kms_key_id
-#    }
-#  }
+  block_device_mappings {
+    device_name = "/dev/sda1"
+
+    ebs {
+      encrypted = "true"
+      kms_key_id = var.kms_key_id
+    }
+  }
 }
 resource "aws_autoscaling_group" "main" {
   name = "${local.name_prefix}-asg"
