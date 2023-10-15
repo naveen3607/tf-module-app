@@ -238,7 +238,7 @@ resource "aws_lb_listener_rule" "public" {
 
   condition {
     host_header {
-      values = ["${var.env}.naveen3607.online"]
+      values = ["${var.env == "prod" ? "www" : var.env}.naveen3607.online"]
     }
   }
 }
