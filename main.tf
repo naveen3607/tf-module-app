@@ -193,7 +193,7 @@ resource "aws_lb_listener_rule" "main" {
 
   condition {
     host_header {
-      values = [var.component == "frontend" ? "${var.env}.naveen3607.online" : "${var.component}-${var.env}.naveen3607.online"]
+      values = [var.component == "frontend" ? "www.naveen3607.online" : "${var.component}-${var.env}.naveen3607.online"]
     }
   }
 }
