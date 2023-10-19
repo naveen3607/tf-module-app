@@ -157,6 +157,19 @@ resource "aws_autoscaling_group" "main" {
   }
 }
 
+resource "aws_autoscaling_policy" "asg-cpu-rule" {
+  autoscaling_group_name = "CPULoadDetect"
+  name                   = aws_autoscaling_group.main.name
+  policy_type            = "TargetTrackingScaling"
+  estimated_instance_warmup = 120
+  target_tracking_configuration {
+    predefined_metric_specification {
+      predefined_metric_type = "ASGAverageCPUUtilization"
+    }
+    target_value = 50.0
+  }
+}
+
 resource "aws_route53_record" "main" {
   zone_id = var.zone_id
   name    = var.component == "frontend" ? var.env == "prod" ? "www":var.env : "${var.component}-${var.env}"
